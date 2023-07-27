@@ -15,6 +15,7 @@ func (User) TableName() string {
 	return "user"
 }
 
+//demo
 func Test() []User {
 	//对数据进行增删改查
 	//user := User{Name: "John Doe", Email: "john@example.com"}
