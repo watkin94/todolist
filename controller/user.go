@@ -2,8 +2,6 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	//"net/http"
-	//"todolist/db"
 	"todolist/model"
 )
 
