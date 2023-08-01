@@ -10,8 +10,6 @@ var (
 	DB *gorm.DB
 )
 
-
-
 func Connect() {
 	//这里尝试连接mysql
 	var dns string
