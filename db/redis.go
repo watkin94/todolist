@@ -7,6 +7,10 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
+func init()  {
+	fmt.Println("------------------------------redis-init------------------------------------")
+}
+
 func RedisInit()  {
 	//这里使用redis
 	client := redis.NewClient(&redis.Options{
@@ -22,6 +26,7 @@ func RedisInit()  {
 
 	// 示例：获取键值对
 	val, err := client.Get(ctx, "key").Result()
+
 	if err == redis.Nil {
 		fmt.Println("键值对不存在")
 	} else if err != nil {
