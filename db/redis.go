@@ -19,6 +19,8 @@ func RedisInit()  {
 		DB:       0,                // Redis 数据库索引
 	})
 
+
+	
 	// 创建一个上下文（Context）
 	ctx := context.Background()
 	//
