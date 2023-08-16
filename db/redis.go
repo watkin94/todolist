@@ -1,15 +1,16 @@
 package db
 
 import (
-	"context"
+
 	"fmt"
-	"time"
 	"github.com/go-redis/redis/v8"
 )
 
 func init()  {
 	fmt.Println("------------------------------redis-init------------------------------------")
 }
+
+var Client *redis.Client
 
 func RedisInit()  {
 	//这里使用redis
@@ -19,21 +20,17 @@ func RedisInit()  {
 		DB:       0,                // Redis 数据库索引
 	})
 
-
-	
+	Client = client
 	// 创建一个上下文（Context）
-	ctx := context.Background()
-	//
-	client.Set(ctx, "key", "value", 1*time.Hour)
-
+	//ctx := context.Background()
+	//client.Set(ctx, "key", "value", 1*time.Hour)
 	// 示例：获取键值对
-	val, err := client.Get(ctx, "key").Result()
-
-	if err == redis.Nil {
-		fmt.Println("键值对不存在")
-	} else if err != nil {
-		fmt.Println("获取键值对失败:", err)
-	} else {
-		fmt.Println("获取到的值为:", val)
-	}
+	//val, err := client.Get(ctx, "key").Result()
+	//if err == redis.Nil {
+	//	fmt.Println("键值对不存在")
+	//} else if err != nil {
+	//	fmt.Println("获取键值对失败:", err)
+	//} else {
+	//	fmt.Println("获取到的值为:", val)
+	//}
 }
