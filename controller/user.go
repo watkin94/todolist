@@ -19,11 +19,15 @@ func UserIndex(c *gin.Context)  {
 func Users(c *gin.Context)  {
 	// 处理获取用户列表的逻辑
 	//users := []string {"user1","user2","user3"}
-	ctx:=context.Background()
-	//db.Client.Set(ctx, "key", users, 1*time.Hour)
-	//db.Client.Set(ctx, "key2", users, 1*time.Hour)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 	db.Client.Set(ctx, "key3", "usersssss", 1*time.Hour)
-	redis_user ,_ := db.Client.Get(ctx, "key3").Result()
+	redis_user ,err := db.Client.Get(ctx, "key3").Result()
+
+	if err != nil {
+		c.JSON(500, gin.H{"error": err})
+		return
+	}
 
 	c.JSON(200, gin.H{"users": redis_user})
 }

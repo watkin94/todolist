@@ -1,10 +1,12 @@
 package db
 
 import (
+	//"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
 	"os"
+	//"time"
 )
 
 func init()  {
@@ -37,7 +39,7 @@ func RedisInit()  {
 	// 创建一个上下文（Context）
 	//ctx := context.Background()
 	//client.Set(ctx, "key", "value", 1*time.Hour)
-	// 示例：获取键值对
+	////示例：获取键值对
 	//val, err := client.Get(ctx, "key").Result()
 	//if err == redis.Nil {
 	//	fmt.Println("键值对不存在")
