@@ -26,6 +26,7 @@ func ApiInit()  {
 
 
 	R.GET("/users", controller.Users)
+	R.GET("/gousers", controller.GoUser)
 	R.GET("/usersIndex", controller.UserIndex)
 	// 注册日志中间件
 

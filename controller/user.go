@@ -1,11 +1,26 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"time"
 	"todolist/db"
 	"context"
 )
+
+
+//用于签名的字符串
+var mySigningKey = []byte("watkin")
+
+
+//直接使用默认声明创建jwt
+//func GenRegisteredClaims() (string,error) {
+	//创建Claims
+	//claims:=&jwt.RegisteredClaims{
+	//	ExpiresAt : jwt.NewNumericDate(),
+	//}
+//}
+
 
 //测试
 func UserIndex(c *gin.Context)  {
@@ -30,4 +45,28 @@ func Users(c *gin.Context)  {
 	}
 
 	c.JSON(200, gin.H{"users": redis_user})
+}
+
+func go1()  {
+	//异步任务1
+	for i:=0;i < 100000;i++{
+		fmt.Println(i)
+	}
+}
+
+func go2 ()  {
+	//异步任务2
+	for i:=0;i < 100000;i++{
+		fmt.Println(i)
+	}
+}
+
+
+//带协程的gouser
+func GoUser(c *gin.Context)  {
+	//模拟用协程处理异步任务
+	go go1()
+	go go2()
+	res := []string {"dddd"}
+	c.JSON(200, gin.H{"users": res})
 }
