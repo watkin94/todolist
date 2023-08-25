@@ -15,11 +15,22 @@ var mySigningKey = []byte("watkin")
 
 //直接使用默认声明创建jwt
 //func GenRegisteredClaims() (string,error) {
-	//创建Claims
-	//claims:=&jwt.RegisteredClaims{
-	//	ExpiresAt : jwt.NewNumericDate(),
-	//}
+//	//创建Claims
+//	claims:=&jwt.RegisteredClaims{
+//		ExpiresAt : jwt.NewNumericDate(time.Now().Add(time.Hour*24)),	//过期时间
+//		Issuer : "watkin",		//签发人
+//	}
+//	//生成token对象
+//	token := jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+//	//生成签名字符串
+//	return token.SignedString(mySigningKey)
 //}
+//
+//func ValidateRegisteredClaims(tokenString string) bool {
+//	//解析token
+//	token,err := jwt.Parse(tokenString,func(token *jwt.Token))(Interface{},error())
+//}
+
 
 
 //测试
