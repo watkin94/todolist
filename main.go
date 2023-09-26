@@ -32,7 +32,6 @@ func main() {
 
 
 	fmt.Println("-------------------------------测试检验token-------------------------------------")
-	//tokeTmp := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJuYmYiOjE2OTY5MzkyMDB9.xQTqqa8sylUhy7hoKJPB6GK_54hhfuSm3V3p-8soqOU"
 
 	token_re,err := jwt.ParseWithClaims(tokenString,&UsersClaims{}, func(t *jwt.Token)(interface{},error) {
 		return secretkey,nil
@@ -47,13 +46,13 @@ func main() {
 	claims,ok := token_re.Claims.(*UsersClaims)
 	valid := token_re.Valid
 	fmt.Println(claims,ok,valid)
-	//fmt.Println(token_re,err)
 
-	/*****************************************写个中间件**********************************************/
-	//return;
-	db.Connect()
+
+
+	/*****************************************调用中间件**********************************************/
+	db.Connect()		//链接mysql
 	model.CreateTodo()	//创建表迁移
-	defer db.Close()
-	db.RedisInit()	//测试redis
-	route.ApiInit()
+	defer db.Close()	//后置关闭链接
+	db.RedisInit()		//连接redis
+	route.ApiInit()		//实例化api
 }

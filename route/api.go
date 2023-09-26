@@ -9,26 +9,21 @@ import (
 	jwt "github.com/appleboy/gin-jwt/v2"
 )
 
-var Name = "api ------------------ route-----------------------init"
-func init()  {
-	fmt.Println(Name)
-	// the jwt middleware
-}
+//为jwt准备数据
+var identityKey = "id"
 
 type login struct {
 	Username string `form:"username" json:"username" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
 }
 
-var identityKey = "id"
-// User demo
 type User struct {
 	UserName  string
 	FirstName string
 	LastName  string
 }
 
-//hello的测试方法
+//api方法
 func helloHandler(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	user, _ := c.Get(identityKey)
@@ -40,10 +35,9 @@ func helloHandler(c *gin.Context) {
 }
 
 
+//初始化路由
 func ApiInit()  {
 	R := gin.Default()
-	//S.Use(middlware.Logger())	//注册日志中间件
-
 	//要渲染模板----告诉gin模板文件存放位置
 	R.LoadHTMLGlob("templates/*")
 	R.Static("/static","./static")
@@ -52,13 +46,11 @@ func ApiInit()  {
 		c.HTML(http.StatusOK,"index.html",gin.H{"title":"清单"})
 	})
 
-
 	R.GET("/users", controller.Users)
 	R.GET("/gousers", controller.GoUser)
 	R.GET("/usersIndex", controller.UserIndex)
 
-	//jwt验证
-	//这个是jwt 的主要方法
+	//jwt逻辑===>需要拆分变化
 	authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
