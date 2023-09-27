@@ -19,7 +19,7 @@ type UsersClaims struct {
 
 func main() {
 	fmt.Println("测试生成jwt")
-	secretkey := []byte("111") //密钥，不能泄漏
+	secretkey := []byte("watkin1994") //密钥，不能泄漏
 	//生成token对象
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256,jwt.MapClaims{
 		"foo":"bar",

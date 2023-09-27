@@ -7,8 +7,8 @@ import (
 	"todolist/db"
 )
 
+//查询todo表的所有数据
 func GetTodo(c *gin.Context){
-	//查询todo表的所有数据
 	var todoList []model.Todo
 	if err:=db.DB.Find(&todoList).Error;err!=nil{
 		c.JSON(http.StatusOK,gin.H{"error":err.Error()})
@@ -17,7 +17,7 @@ func GetTodo(c *gin.Context){
 	}
 }
 
-
+//添加todo
 func AddTodo(c *gin.Context) {
 	var todo model.Todo
 	c.BindJSON(&todo)
@@ -28,6 +28,7 @@ func AddTodo(c *gin.Context) {
 	}
 }
 
+//修改todo
 func EditTodo(c *gin.Context) {
 	id,_ := c.Params.Get("id")
 	var todo model.Todo
@@ -44,7 +45,7 @@ func EditTodo(c *gin.Context) {
 	}
 }
 
-
+//删除todo
 func DeleteTodo(c *gin.Context) {
 	id,ok := c.Params.Get("id")
 	if !ok {

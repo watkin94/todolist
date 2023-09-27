@@ -50,7 +50,7 @@ func ApiInit()  {
 	R.GET("/gousers", controller.GoUser)
 	R.GET("/usersIndex", controller.UserIndex)
 
-	//jwt逻辑===>需要拆分变化
+	//jwt逻辑===>需要拆分到对应板块
 	authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
@@ -145,7 +145,6 @@ func ApiInit()  {
 	{
 		auth.GET("/hello", helloHandler)
 	}
-	// 注册日志中间件
 
 	//设定路由组
 	v1Group := R.Group("v1")

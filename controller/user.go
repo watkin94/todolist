@@ -16,9 +16,8 @@ func UserIndex(c *gin.Context)  {
 }
 
 
-//测试--在gin控制器中使用redis
+//测试--在gin控制器中使用redis===>	// 处理获取用户列表的逻辑
 func Users(c *gin.Context)  {
-	// 处理获取用户列表的逻辑
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	db.Client.Set(ctx, "key3", "usersssss", 1*time.Hour)	//调用redis
@@ -31,6 +30,16 @@ func Users(c *gin.Context)  {
 
 	c.JSON(200, gin.H{"users": redis_user})
 }
+
+
+//带协程的gouser===>模拟用协程处理异步任务,  但是运行顺序是先返回接口。然后再循环数组
+func GoUser(c *gin.Context)  {
+	go go1()
+	go go2()
+	res := []string {"dddd"}
+	c.JSON(200, gin.H{"users": res})
+}
+
 
 func go1()  {
 	//异步任务1
@@ -47,11 +56,3 @@ func go2 ()  {
 }
 
 
-//带协程的gouser
-func GoUser(c *gin.Context)  {
-	//模拟用协程处理异步任务
-	go go1()
-	go go2()
-	res := []string {"dddd"}
-	c.JSON(200, gin.H{"users": res})
-}
