@@ -50,9 +50,9 @@ func main() {
 
 
 	/*****************************************调用中间件**********************************************/
-	db.Connect()		//链接mysql
+	db.Connect()		//连接mysql
 	model.CreateTodo()	//创建表迁移
-	defer db.Close()	//后置关闭链接
-	db.RedisInit()		//连接redis
-	route.ApiInit()		//实例化api
+	defer db.Close()	//延迟关闭mysql
+	db.RedisInit()		//redis初始化
+	route.ApiInit()		//路由初始化
 }

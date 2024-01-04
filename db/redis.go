@@ -1,12 +1,10 @@
 package db
 
 import (
-	//"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/joho/godotenv"
 	"os"
-	//"time"
 )
 
 func init()  {
@@ -24,7 +22,6 @@ func RedisInit()  {
 	addr := os.Getenv("REDIS_HOST") + ":6379"
 	pwd := os.Getenv("REDIS_PASSWORD")
 	//redisdb := os.Getenv("REDIS_DB")
-
 
 	//这里使用redis
 	client := redis.NewClient(&redis.Options{
